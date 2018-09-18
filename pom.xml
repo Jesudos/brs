@@ -74,14 +74,13 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.36</version>
 		</dependency>
-		
 	</dependencies>
 	<build>
-	
-	     <defaultGoal>install</defaultGoal>
-	  <plugins>
-	
-	       <plugin>
+        <finalName>BRS</finalName>
+		<defaultGoal>install</defaultGoal>
+		<plugins>
+
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.0</version>
@@ -94,9 +93,9 @@
 					<target>${java.version}</target>
 					<showWarnings>true</showWarnings>
 				</configuration>
-           </plugin>
-   
-           <plugin>
+			</plugin>
+
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.13</version>
@@ -105,17 +104,17 @@
 						<include>**/*Tests.java</include>
 					</includes>
 				</configuration>
-           </plugin>
-           <plugin>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.3</version>
 				<configuration>
 					<warName>brs</warName>
 				</configuration>
-           </plugin>
+			</plugin>
 
-           <plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
 				<version>2.9</version>
@@ -140,8 +139,8 @@
 						<projectnature>org.eclipse.m2e.core.maven2Nature</projectnature>
 					</additionalProjectnatures>
 				</configuration>
-	        </plugin>	
-	        <plugin>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>2.4</version>
@@ -151,8 +150,8 @@
 					</descriptorRefs>
 				</configuration>
 			</plugin>
-			
-	        <plugin>
+
+			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.0</version>
@@ -165,22 +164,22 @@
 		</plugins>
 	</build>
 	<profiles>
-    <profile>
-        <id>openshift</id>
-        <build>
-            <finalName>petclinic</finalName>
-            <plugins>
-                <plugin>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>2.1.1</version>
-                    <configuration>
-                        <outputDirectory>webapps</outputDirectory>
-                        <warName>ROOT</warName>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </build>
-    </profile>
-</profiles>
-	
-	</project>
+		<profile>
+			<id>openshift</id>
+			<build>
+				<finalName>petclinic</finalName>
+				<plugins>
+					<plugin>
+						<artifactId>maven-war-plugin</artifactId>
+						<version>2.1.1</version>
+						<configuration>
+							<outputDirectory>webapps</outputDirectory>
+							<warName>ROOT</warName>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>
