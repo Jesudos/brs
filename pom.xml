@@ -76,7 +76,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-        <finalName>BRS</finalName>
+		<finalName>BRS</finalName>
 		<defaultGoal>install</defaultGoal>
 		<plugins>
 
@@ -105,12 +105,23 @@
 					</includes>
 				</configuration>
 			</plugin>
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-war-plugin</artifactId> 
+				<version>2.3</version> <configuration> <warName>brs</warName> </configuration> 
+				</plugin> -->
+
 			<plugin>
+				<!-- Build an executable JAR -->
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.3</version>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.1.0</version>
 				<configuration>
-					<warName>brs</warName>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<mainClass>com.shivajivarma.brs.AppLauncher</mainClass>
+						</manifest>
+					</archive>
 				</configuration>
 			</plugin>
 
@@ -150,36 +161,11 @@
 					</descriptorRefs>
 				</configuration>
 			</plugin>
-
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.0</version>
-				<configuration>
-					<server>tomcat-development-server</server>
-					<port>9966</port>
-					<path>/busreservation</path>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
-	<profiles>
-		<profile>
-			<id>openshift</id>
-			<build>
-				<finalName>petclinic</finalName>
-				<plugins>
-					<plugin>
-						<artifactId>maven-war-plugin</artifactId>
-						<version>2.1.1</version>
-						<configuration>
-							<outputDirectory>webapps</outputDirectory>
-							<warName>ROOT</warName>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+	<!-- <profiles> <profile> <id>openshift</id> <build> <finalName>petclinic</finalName> 
+		<plugins> <plugin> <artifactId>maven-war-plugin</artifactId> <version>2.1.1</version> 
+		<configuration> <outputDirectory>webapps</outputDirectory> <warName>ROOT</warName> 
+		</configuration> </plugin> </plugins> </build> </profile> </profiles> -->
 
 </project>
